@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"testing"
@@ -56,8 +57,8 @@ func TestWorkerS_Pre_v1(t *testing.T) {
 	// ww.Config.Store = store.New()
 	// ww.Loaders = []cli.Loader{loaders.NewConfigFileLoader(), loaders.NewEnvVarLoader()}
 	_ = app
-
-	err := ww.Run()
+	ctx := context.Background()
+	err := ww.Run(ctx)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -86,7 +87,8 @@ func TestWorkerS_Pre_v1(t *testing.T) {
 func cleanApp(t *testing.T, opts ...cli.Opt) (app cli.App, ww cli.Runner) { //nolint:revive
 	app = buildDemoApp(opts...)
 	ww = postBuild(app)
-	ww.InitGlobally()
+	ctx := context.Background()
+	ww.InitGlobally(ctx)
 	assertTrue(t, ww.Ready())
 
 	// ww.wrHelpScreen = &discardP{}
@@ -131,7 +133,7 @@ func buildDemoApp(opts ...cli.Opt) (app cli.App) { //nolint:revive
 		Examples(``).
 		Deprecated(``).
 		Hidden(false).
-		OnAction(func(cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
 			return // handling command action here
 		})
 	b1.Flg("full", "f").
@@ -164,13 +166,13 @@ func buildDemoApp(opts ...cli.Opt) (app cli.App) { //nolint:revive
 		Build()
 	b.Build()
 
-	examples.AttachServerCommand(app.NewCommandBuilder("server"))
+	examples.AttachServerCommand(app.Cmd("server", "s"))
 
-	examples.AttachKvCommand(app.NewCommandBuilder("kv"))
+	examples.AttachKvCommand(app.Cmd("kv", "kv"))
 
-	examples.AttachMsCommand(app.NewCommandBuilder("ms"))
+	examples.AttachMsCommand(app.Cmd("ms", "ms"))
 
-	examples.AttachMoreCommandsForTest(app.NewCommandBuilder("more"), true)
+	examples.AttachMoreCommandsForTest(app.Cmd("more", "m"), true)
 
 	b = app.Cmd("display", "da").
 		Description("command set for display adapter operations")
@@ -205,7 +207,7 @@ func postBuild(app cli.App) (ww cli.Runner) {
 	if sr, ok := app.(interface{ Worker() cli.Runner }); ok {
 		ww = sr.Worker()
 		if r, ok := app.(interface{ Root() *cli.RootCommand }); ok {
-			r.Root().EnsureTree(app, r.Root())
+			r.Root().EnsureTree(context.TODO(), app, r.Root())
 			if sra, ok := ww.(interface {
 				SetRoot(root *cli.RootCommand, args []string)
 			}); ok {

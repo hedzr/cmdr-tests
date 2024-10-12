@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"os"
+
 	"github.com/hedzr/cmdr-loaders/local"
 	logz "github.com/hedzr/logg/slog"
 	"github.com/hedzr/store"
@@ -17,15 +20,7 @@ func main() {
 	// _ = app.Run(
 	// 	cmdr.WithForceDefaultAction(false), // true for debug in developing time
 	// )
-
-	if err := app.Run(
-		cmdr.WithStore(store.New()),
-		cmdr.WithExternalLoaders(
-			local.NewConfigFileLoader(),
-			local.NewEnvVarLoader(),
-		),
-		cmdr.WithForceDefaultAction(true), // true for debug in developing time
-	); err != nil {
+	if err := app.Run(ctx); err != nil {
 		logz.Error("Application Error:", "err", err)
 	}
 }
@@ -53,7 +48,7 @@ func prepareApp() (app cli.App) {
 		Examples(``).
 		Deprecated(`v0.1.1`).
 		Hidden(false).
-		OnAction(func(cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
 			app.Store().Set("app.demo.working", dir.GetCurrentDir())
 			println()
 			println(dir.GetCurrentDir())

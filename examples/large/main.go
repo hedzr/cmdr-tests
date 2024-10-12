@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"os"
+
 	"github.com/hedzr/cmdr-loaders/local"
 	logz "github.com/hedzr/logg/slog"
 	"github.com/hedzr/store"
@@ -17,15 +20,7 @@ func main() {
 	// _ = app.Run(
 	// 	cmdr.WithForceDefaultAction(false), // true for debug in developing time
 	// )
-
-	if err := app.Run(
-		cmdr.WithStore(store.New()),
-		cmdr.WithExternalLoaders(
-			local.NewConfigFileLoader(),
-			local.NewEnvVarLoader(),
-		),
-		cmdr.WithForceDefaultAction(false), // true for debug in developing time
-	); err != nil {
+	if err := app.Run(ctx); err != nil {
 		logz.Error("Application Error:", "err", err)
 	}
 }
@@ -46,7 +41,7 @@ func prepareApp() (app cli.App) {
 		Examples(``).
 		Deprecated(`v0.1.1`).
 		Hidden(false).
-		OnAction(func(cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
 			return // handling command action here
 		})
 	b1.Flg("full", "f").
@@ -75,13 +70,13 @@ func prepareApp() (app cli.App) {
 		Build()
 	b.Build()
 
-	examples.AttachServerCommand(app.NewCommandBuilder("server"))
+	examples.AttachServerCommand(app.Cmd("server", "s"))
 
-	examples.AttachKvCommand(app.NewCommandBuilder("kv"))
+	examples.AttachKvCommand(app.Cmd("kv", "kv"))
 
-	examples.AttachMsCommand(app.NewCommandBuilder("ms"))
+	examples.AttachMsCommand(app.Cmd("ms", "ms"))
 
-	examples.AttachMoreCommandsForTest(app.NewCommandBuilder("more"), false)
+	examples.AttachMoreCommandsForTest(app.Cmd("more", "m"), false)
 
 	b = app.Cmd("display", "da").
 		Description("command set for display adapter operations")
