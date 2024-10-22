@@ -185,7 +185,7 @@ func AttachMsCommand(parent cli.CommandBuilder) { //nolint:funlen //a test
 	parent.Cmd("list", "ls", "l", "lst", "dir").
 		Description("list tags for ms cmd", "").
 		Group("2333.List").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			return
 		}).
@@ -211,7 +211,7 @@ func tagsCommands(parent cli.CommandBuilder) { //nolint:revive
 	parent.Cmd("list", "ls", "l", "lst", "dir").
 		Description("list tags for ms tags cmd").
 		Group("2333.List").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			return
 		}).
@@ -331,7 +331,7 @@ func tagsCommands(parent cli.CommandBuilder) { //nolint:revive
 	b = parent.Cmd("toggle", "t", "tog", "switch").
 		Description("toggle tags").
 		Group("").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			return
 		})
@@ -399,7 +399,7 @@ func tgCommand(parent cli.CommandBuilder) { //nolint:revive
 	b := parent.Cmd("tg-test", "tg", "toggle-group-test").
 		Description("tg test new features", "tg test new features,\nverbose long descriptions here.").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			fmt.Printf("*** Got fruit (toggle group): %v\n", cmd.Set().MustString("app.tg-test.fruit"))
 
 			fmt.Printf("> STDIN MODE: %v \n", cmd.Set().MustBool("mx-test.stdin"))
@@ -436,7 +436,7 @@ func tgCommand(parent cli.CommandBuilder) { //nolint:revive
 	b = parent.Cmd("tg-test2", "tg2", "toggle-group-test2").
 		Description("tg2 test new features", "tg2 test new features,\nverbose long descriptions here.").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			fmt.Printf("*** Got fruit (toggle group): %v\n", cmd.Set().MustString("app.tg-test2.fruit"))
 			_, _ = cmd, args
 
@@ -470,7 +470,7 @@ func mxCommand(parent cli.CommandBuilder) { //nolint:revive
 	b := parent.Cmd("mx-test", "mx").
 		Description("mx test new features", "mx test new features,\nverbose long descriptions here.").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			// cmdr.Set("test.1", 8)
 			cmd.Set().Set("test.deep.branch.1", "test")
@@ -576,7 +576,7 @@ func cmdrXyPrint(parent cli.CommandBuilder) {
 	parent.Cmd("xy-print", "xy").
 		Description("test terminal control sequences", "xy-print test terminal control sequences,\nverbose long descriptions here.").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			//
 			// https://en.wikipedia.org/wiki/ANSI_escape_code
 			// https://zh.wikipedia.org/wiki/ANSI%E8%BD%AC%E4%B9%89%E5%BA%8F%E5%88%97
@@ -610,7 +610,7 @@ $ {{.AppName}} kb --size 8T
 $ {{.AppName}} kb --size 1g
   1GB = 1,073,741,824 bytes
 		`).
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			// fmt.Printf("Got size: %v (literal: %v)\n\n", cmdr.GetKibibytesR("kb-print.size"), cmdr.GetStringR("kb-print.size"))
 			_, _ = cmd, args
 			return
@@ -636,7 +636,7 @@ func cmdrPanic(parent cli.CommandBuilder) {
 	b.Cmd("division-by-zero", "dz").
 		Description("").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			fmt.Println(val / zeroVal)
 			return
@@ -645,7 +645,7 @@ func cmdrPanic(parent cli.CommandBuilder) {
 	b.Cmd("panic", "pa").
 		Description("").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			panic(9)
 		}).
@@ -659,7 +659,7 @@ func cmdrSoundex(parent cli.CommandBuilder) {
 		Description("soundex test").
 		Group("Test").
 		TailPlaceHolders("[text1, text2, ...]").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 			for ix, s := range args {
 				fmt.Printf("%5d. %s => %s\n", ix, s, text.Soundex(s))
@@ -673,7 +673,7 @@ func cmdrTtySize(parent cli.CommandBuilder) {
 	parent.Cmd("cols", "rows", "tty-size").
 		Description("detected tty size").
 		Group("Test").
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			_, _ = cmd, args
 
 			cols, rows := term.GetTtySize()

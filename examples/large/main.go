@@ -14,7 +14,15 @@ import (
 )
 
 func main() {
-	app := prepareApp()
+	ctx := context.Background()
+	app := prepareApp(
+		cmdr.WithStore(store.New()),
+		cmdr.WithExternalLoaders(
+			local.NewConfigFileLoader(),
+			local.NewEnvVarLoader(),
+		),
+		cmdr.WithForceDefaultAction(false), // true for debug in developing time
+	)
 
 	// // simple run the parser of app and trigger the matched command's action
 	// _ = app.Run(
@@ -22,11 +30,12 @@ func main() {
 	// )
 	if err := app.Run(ctx); err != nil {
 		logz.Error("Application Error:", "err", err)
+		os.Exit(app.SuggestRetCode())
 	}
 }
 
-func prepareApp() (app cli.App) {
-	app = cmdr.New().
+func prepareApp(opts ...cli.Opt) (app cli.App) {
+	app = cmdr.New(opts...).
 		Info("large-app", "0.3.1").
 		Author("hedzr")
 
@@ -41,7 +50,7 @@ func prepareApp() (app cli.App) {
 		Examples(``).
 		Deprecated(`v0.1.1`).
 		Hidden(false).
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			return // handling command action here
 		})
 	b1.Flg("full", "f").
