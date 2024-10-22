@@ -1,6 +1,8 @@
 package testdata
 
 import (
+	"context"
+
 	"github.com/hedzr/cmdr-tests/examples"
 
 	"github.com/hedzr/cmdr/v2/builder"
@@ -19,9 +21,10 @@ func BuildApp(helpScreen bool) (app cli.App) {
 }
 
 func cleanApp(helpScreen bool) (app cli.App, ww cli.Runner) {
+	ctx := context.Background()
 	app = buildDemoApp()
 	ww = postBuild(app)
-	ww.InitGlobally()
+	ww.InitGlobally(ctx)
 
 	// assert.EqualTrue(t, ww.Ready())
 
@@ -56,7 +59,7 @@ func buildDemoApp() (app cli.App) {
 		cli.WithStore(nil),
 	)
 
-	w := worker.New(cfg,
+	w := worker.New(cfg).With(
 		worker.WithHelpScreenSets(false, true),
 		worker.WithConfig(cfg),
 	)
@@ -75,7 +78,7 @@ func buildDemoApp() (app cli.App) {
 		Examples(``).
 		Deprecated(``).
 		Hidden(false).
-		OnAction(func(cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			return // handling command action here
 		})
 
@@ -107,13 +110,13 @@ func buildDemoApp() (app cli.App) {
 
 	b.Build()
 
-	examples.AttachServerCommand(app.NewCommandBuilder("server"))
+	examples.AttachServerCommand(app.Cmd("server"))
 
 	// app.AddCmd(func(b cli.CommandBuilder) {
 	// 	examples.AttachKvCommand(b)
 	// })
 
-	examples.AttachMsCommand(app.NewCommandBuilder("ms"))
+	examples.AttachMsCommand(app.Cmd("ms"))
 
 	// app.AddCmd(func(b cli.CommandBuilder) {
 	// 	examples.AttachMoreCommandsForTest(b)
@@ -153,7 +156,8 @@ func postBuild(app cli.App) (ww cli.Runner) {
 		ww = sr.Worker()
 		// if ww, ok = sr.Worker().(*workerS); ok {
 		if r, ok := app.(interface{ Root() *cli.RootCommand }); ok {
-			r.Root().EnsureTree(app, r.Root())
+			ctx := context.Background()
+			r.Root().EnsureTree(ctx, app, r.Root())
 			if sr2, ok := ww.(interface {
 				SetRoot(root *cli.RootCommand, args []string)
 			}); ok {

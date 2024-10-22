@@ -133,7 +133,7 @@ func buildDemoApp(opts ...cli.Opt) (app cli.App) { //nolint:revive
 		Examples(``).
 		Deprecated(``).
 		Hidden(false).
-		OnAction(func(ctx context.Context, cmd *cli.Command, args []string) (err error) {
+		OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
 			return // handling command action here
 		})
 	b1.Flg("full", "f").
@@ -207,7 +207,9 @@ func postBuild(app cli.App) (ww cli.Runner) {
 	if sr, ok := app.(interface{ Worker() cli.Runner }); ok {
 		ww = sr.Worker()
 		if r, ok := app.(interface{ Root() *cli.RootCommand }); ok {
-			r.Root().EnsureTree(context.TODO(), app, r.Root())
+			if cx, ok := r.Root().Cmd.(*cli.CmdS); ok {
+				cx.EnsureTree(context.TODO(), app, r.Root())
+			}
 			if sra, ok := ww.(interface {
 				SetRoot(root *cli.RootCommand, args []string)
 			}); ok {
