@@ -55,25 +55,26 @@ go 1.22.7
 // replace github.com/hedzr/store/providers/maps => ../libs.store/providers/maps
 
 require (
-	github.com/hedzr/cmdr-loaders v1.2.0
-	github.com/hedzr/cmdr/v2 v2.0.7
-	github.com/hedzr/is v0.5.27
-	github.com/hedzr/logg v0.7.0
-	github.com/hedzr/store v1.0.18
+	github.com/hedzr/cmdr-loaders v1.2.3
+	github.com/hedzr/cmdr/v2 v2.0.9
+	github.com/hedzr/is v0.6.0
+	github.com/hedzr/logg v0.7.3
+	github.com/hedzr/store v1.1.1
+	gopkg.in/hedzr/errors.v3 v3.3.5
 )
 
 require (
-	github.com/fsnotify/fsnotify v1.7.0 // indirect
+	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/hedzr/evendeep v1.2.0 // indirect
-	github.com/hedzr/store/codecs/hcl v1.0.18 // indirect
-	github.com/hedzr/store/codecs/hjson v1.0.18 // indirect
-	github.com/hedzr/store/codecs/json v1.0.18 // indirect
-	github.com/hedzr/store/codecs/nestext v1.0.18 // indirect
-	github.com/hedzr/store/codecs/toml v1.0.18 // indirect
-	github.com/hedzr/store/codecs/yaml v1.0.18 // indirect
-	github.com/hedzr/store/providers/env v1.0.18 // indirect
-	github.com/hedzr/store/providers/file v1.0.18 // indirect
+	github.com/hedzr/evendeep v1.2.3 // indirect
+	github.com/hedzr/store/codecs/hcl v1.1.1 // indirect
+	github.com/hedzr/store/codecs/hjson v1.1.1 // indirect
+	github.com/hedzr/store/codecs/json v1.1.1 // indirect
+	github.com/hedzr/store/codecs/nestext v1.1.1 // indirect
+	github.com/hedzr/store/codecs/toml v1.1.1 // indirect
+	github.com/hedzr/store/codecs/yaml v1.1.1 // indirect
+	github.com/hedzr/store/providers/env v1.1.1 // indirect
+	github.com/hedzr/store/providers/file v1.1.1 // indirect
 	github.com/hjson/hjson-go/v4 v4.4.0 // indirect
 	github.com/npillmayer/nestext v0.1.3 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
@@ -82,6 +83,5 @@ require (
 	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/term v0.25.0 // indirect
-	gopkg.in/hedzr/errors.v3 v3.3.3 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
