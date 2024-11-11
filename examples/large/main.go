@@ -21,6 +21,10 @@ import (
 	"github.com/hedzr/cmdr/v2/cli/examples"
 )
 
+const appName = "large-app"
+const version = "v1.2.5"
+const Version = version
+
 func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -60,8 +64,13 @@ func main() {
 }
 
 func prepareApp(opts ...cli.Opt) (app cli.App) {
+	// A cmdr app will close all peripherals in basics.Closers() at exiting.
+	// So you could always register the objects which wanna be cleanup at
+	// app terminating, by [basics.RegisterPeripheral(...)].
+	// See also: https://github.com/hedzr/is/blob/master/basics/ and
+	// is.Closers(), basics.Closers(), ....
 	app = cmdr.New(opts...).
-		Info("large-app", "0.3.1").
+		Info(appName, version).
 		Author("The Example Authors") // .Description(``).Header(``).Footer(``)
 
 	// another way to disable `cmdr.WithForceDefaultAction(true)` is using
@@ -91,7 +100,8 @@ func prepareApp(opts ...cli.Opt) (app cli.App) {
 				// Group(cli.UnsortedGroup).
 				Hidden(false).
 				OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
-					// cmd.Set() == cmdr.Store(), cmd.Store() == cmdr.Store()
+					// cmd.Set() == cmdr.Store():   the whole store
+					// cmd.Store() == cmdr.Store(): the sub-store at 'app.cmd', this child-tree holds the live data of command-line args (flags)
 					cmd.Set().Set("app.demo.working", dir.GetCurrentDir())
 					println()
 					println(cmd.Set().WithPrefix("app.demo").MustString("working"))
@@ -103,7 +113,7 @@ func prepareApp(opts ...cli.Opt) (app cli.App) {
 					}
 					cs2 := cmd.Store()
 					if cs2.MustBool("full") != cs.MustBool("full") {
-						logz.Panic("a bug found")
+						logz.Panic("a bug found") // cs & cs2 shall point to same a trie-tree-node.
 					}
 					app.SetSuggestRetCode(1) // ret code must be in 0-255
 					return                   // handling command action here
@@ -112,7 +122,6 @@ func prepareApp(opts ...cli.Opt) (app cli.App) {
 					b.Flg("full", "f").
 						Default(false).
 						Description("full command").
-						// Group(cli.UnsortedGroup).
 						Build()
 				})
 		})
@@ -138,7 +147,7 @@ func prepareApp(opts ...cli.Opt) (app cli.App) {
 			ec := errors.New()
 			defer ec.Defer(&err) // store the collected errors in native err and return it
 			ec.Attach(io.ErrClosedPipe, errors.New("something's wrong"), os.ErrPermission)
-			// see the application error by running `go run ./tiny/tiny/main.go wrong`.
+			// see the application error by running `go run ./examples/large/ wrong`.
 			return
 		}).
 		With(func(b cli.CommandBuilder) {
@@ -222,7 +231,7 @@ func init() {
 			}
 
 			// I am tiny-app in cmdr/v2, I will be launched in dev-mode always
-			if strings.Contains(content, "module github.com/hedzr/cmdr/v2") {
+			if strings.Contains(content, "module github.com/hedzr/cmdr") {
 				devMode = true
 			}
 		}
