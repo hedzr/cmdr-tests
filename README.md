@@ -4,7 +4,7 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/hedzr/cmdr-tests)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/hedzr/cmdr-tests.svg?label=release)](https://github.com/hedzr/cmdr-tests/releases)
 
-Here is a split repo to hold the tests and examples for [cmdr/v2](https://github.com/hedzr/cmdr). Most of them perhaps get some external dependencies.
+Here is a split repo to hold the tests and examples for [cmdr/v2](https://github.com/hedzr/cmdr). Most of the examples perhaps get some external dependencies.
 
 ## License
 
