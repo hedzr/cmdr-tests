@@ -53,7 +53,7 @@ func main() {
 
 func prepareApp(opts ...cli.Opt) (app cli.App) {
 	app = cmdr.New(opts...).
-		Info("demo-app", "0.3.1").
+		Info(AppNameExample, "0.3.1").
 		Author("The Example Authors") // .Description(``).Header(``).Footer(``)
 
 	// another way to disable `cmdr.WithForceDefaultAction(true)` is using
