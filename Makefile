@@ -356,7 +356,8 @@ go-build-child:
 	echo "           +race. -trimpath -gcflags=all='-l -B'. appName = $(ANAME), "
 	echo "           LDFLAGS = $(LDFLAGS)"
 	echo "           TAGS = $(GOBUILD_TAGS)"
-	$(GO) build -trimpath -gcflags=all='-l -B' $(GOBUILD_TAGS) -ldflags "$(LDFLAGS)" -o $(GOBIN)/$(ANAME) $(MAINGONAME)
+	# echo "$(GO) build -trimpath -gcflags=all='-l -B' \"$(GOBUILD_TAGS)\" -ldflags \"$(LDFLAGS)\" -o $(GOBIN)/$(ANAME) $(MAINGONAME)"
+	$(GO) build -trimpath -gcflags=all='-l -B' "$(GOBUILD_TAGS)" -ldflags "$(LDFLAGS)" -o $(GOBIN)/$(ANAME) $(MAINGONAME)
 	ls -la $(LS_OPT) $(GOBIN)/$(ANAME)
 	@echo "  > go-build-child: END."
 
