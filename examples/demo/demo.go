@@ -26,7 +26,7 @@ func main() {
 
 func prepareApp(commands ...cli.CmdAdder) (app cli.App) {
 	return loaders.Create(
-		appName, version, author, desc,
+		AppNameExample, version, author, desc,
 		append([]cli.Opt{
 			cmdr.WithAutoEnvBindings(true),  // default it's false
 			cmdr.WithSortInHelpScreen(true), // default it's false
