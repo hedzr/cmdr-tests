@@ -7,11 +7,11 @@ import (
 	"testing"
 
 	"github.com/hedzr/cmdr-loaders/local"
+	"github.com/hedzr/cmdr/v2/examples"
 	"github.com/hedzr/store"
 
 	"github.com/hedzr/cmdr/v2/builder"
 	"github.com/hedzr/cmdr/v2/cli"
-	"github.com/hedzr/cmdr/v2/cli/examples"
 	"github.com/hedzr/cmdr/v2/cli/worker"
 )
 
