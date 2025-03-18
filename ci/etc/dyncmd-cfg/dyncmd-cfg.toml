@@ -1,0 +1,13 @@
+
+[alias]
+jc = "> jump to"
+ls = "! bash -c \"ls -laG\""
+l = "ls -laG"
+say = "say hello"
+
+# PREFIX MEANINGS:
+# '>':     leading a RedirectTo cmd, using space-sep'd or dot-sep'd path.
+#          for examples, "> jump.to" redirect ro 'juml/'to' command.
+# '!':     leading a program, for example: "say hello" in macOS will play voice 'hello'.
+#          mostly it's a gui program
+# nothing: run a shell command. for example: "ls -la" will list file
