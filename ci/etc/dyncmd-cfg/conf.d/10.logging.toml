@@ -1,0 +1,3 @@
+[logging]
+file = "/var/lib/dyncmd-cfg.stdout.log"
+rotate = 7    # in days
