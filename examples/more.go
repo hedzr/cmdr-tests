@@ -12,8 +12,8 @@ import (
 	logz "github.com/hedzr/logg/slog" //nolint:gci
 
 	"github.com/hedzr/cmdr/v2/cli"
-	"github.com/hedzr/cmdr/v2/pkg/dir"
 	"github.com/hedzr/cmdr/v2/pkg/text"
+	"github.com/hedzr/is/dir"
 )
 
 func AttachServerCommand(parent cli.CommandBuilder) { //nolint:revive

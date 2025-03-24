@@ -9,7 +9,7 @@ toolchain go1.23.3
 require (
 	github.com/hedzr/cmdr-loaders v1.3.6
 	github.com/hedzr/cmdr/v2 v2.1.7
-	github.com/hedzr/is v0.7.7
+	github.com/hedzr/is v0.7.10
 	github.com/hedzr/logg v0.8.7
 	github.com/hedzr/store v1.3.8
 	github.com/lib/pq v1.10.9

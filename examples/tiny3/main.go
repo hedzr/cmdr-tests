@@ -10,7 +10,7 @@ import (
 	"github.com/hedzr/cmdr-loaders/local"
 	"github.com/hedzr/cmdr/v2"
 	"github.com/hedzr/cmdr/v2/cli"
-	"github.com/hedzr/cmdr/v2/pkg/dir"
+	"github.com/hedzr/is/dir"
 	logz "github.com/hedzr/logg/slog"
 	"github.com/hedzr/store"
 )
