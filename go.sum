@@ -4,10 +4,10 @@ github.com/fsnotify/fsnotify v1.9.0 h1:2Ml+OJNzbYCTzsxtv8vKSFD9PbJjmhYF14k/jKC7S
 github.com/fsnotify/fsnotify v1.9.0/go.mod h1:8jBTzvmWwFyi3Pb8djgCCO5IBqzKJ/Jwo8TRcHyHii0=
 github.com/hashicorp/hcl v1.0.0 h1:0Anlzjpi4vEasTeNFn2mLJgTSwt0+6sfsiTG8qcWGx4=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
-github.com/hedzr/cmdr-loaders v1.3.10 h1:HRXXOZ3UBnY1zemgc55/ZXIJ0JrXwblF6+waiR8jenA=
-github.com/hedzr/cmdr-loaders v1.3.10/go.mod h1:BnGEPc5qNzfw/KG7ERfJwCV28hOefFTI4an9IAo+k0I=
-github.com/hedzr/cmdr/v2 v2.1.10 h1:b+PpfR+OkwdqseMGPvFM2NjCdYFL2kS2JnrRHlDVe3A=
-github.com/hedzr/cmdr/v2 v2.1.10/go.mod h1:EqteEvdUBFocF2BMKOUJjFEdtwoB5C1piKALE69iyE0=
+github.com/hedzr/cmdr-loaders v1.3.11 h1:+XB0Hx8HicNgT1ERChN3xFZzV6WPS8DUf+BSZKVOT+U=
+github.com/hedzr/cmdr-loaders v1.3.11/go.mod h1:w6G1rYAhFAkgj01PTAAXucHTuzBtJ/aCpYc4+hsQxog=
+github.com/hedzr/cmdr/v2 v2.1.12 h1:PZ09JyI5hAg22tlJG34OG4I/HsiE1WqFoDBbu6A8fHI=
+github.com/hedzr/cmdr/v2 v2.1.12/go.mod h1:eaurfV9Sfg2IroF8Uso0219xVObDLDRKcTQH3NHDtqQ=
 github.com/hedzr/evendeep v1.3.13 h1:Bc28hAEMAoz63F7SZ71Y0t7GS8bPVANYnRFR6uoKmXY=
 github.com/hedzr/evendeep v1.3.13/go.mod h1:BkZke+z9otkMKCRKntMDFzwHYm1aW5kp8MM6kcf0yYQ=
 github.com/hedzr/is v0.7.13 h1:B0DW0/23dQkPv+JT7H9RteEOoQNWOXc4P/WiY3ROBZo=
