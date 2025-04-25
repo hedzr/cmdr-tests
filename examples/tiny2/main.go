@@ -60,7 +60,7 @@ func chain(app cli.App) cli.App {
 // 			b.Cmd("to").
 // 				Description("to command").
 // 				OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
-// 					// cmd.Set() == cmdr.Store(), cmd.Store() == cmdr.Store()
+// 					// cmd.Set() == cmdr.Set(), cmd.Store() == cmdr.Store()
 // 					cs := cmdr.Store().WithPrefix("jump.to")
 // 					if cs.MustBool("full") {
 // 						println()

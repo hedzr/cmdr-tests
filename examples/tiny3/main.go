@@ -83,10 +83,11 @@ func prepareApp(opts ...cli.Opt) (app cli.App) {
 				Examples(``).
 				Deprecated(`v0.1.1`).
 				OnAction(func(ctx context.Context, cmd cli.Cmd, args []string) (err error) {
-					// cmd.Set() == cmdr.Store(), cmd.Store() == cmdr.Store()
+					// cmd.Set() == cmdr.Set(), cmd.Store() == cmdr.Store()
 					cmd.Set().Set("tiny3.working", dir.GetCurrentDir())
 					println()
 					println(cmd.Set().WithPrefix("tiny3").MustString("working"))
+					println(cmdr.Set("tiny3").MustString("working"))
 
 					cs := cmdr.Store().WithPrefix("jump.to")
 					if cs.MustBool("full") {
