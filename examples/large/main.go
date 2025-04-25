@@ -6,8 +6,8 @@ import (
 
 	"github.com/hedzr/cmdr/v2"
 	"github.com/hedzr/cmdr/v2/cli"
-	"github.com/hedzr/cmdr/v2/examples"
 	"github.com/hedzr/cmdr/v2/examples/cmd"
+	"github.com/hedzr/cmdr/v2/examples/common"
 	"github.com/hedzr/cmdr/v2/examples/devmode"
 	logz "github.com/hedzr/logg/slog"
 )
@@ -41,8 +41,8 @@ func main() {
 		cmdr.WithSortInHelpScreen(true), // default it's false
 	).
 		With(func(app cli.App) { logz.Debug("in dev mode?", "mode", devmode.InDevelopmentMode()) }).
-		WithBuilders(examples.AddHeadLikeFlag). // add a flag here
-		WithAdders(cmd.Commands...).            // added subcommands here
+		WithBuilders(common.AddHeadLikeFlag). // add a flag here
+		WithAdders(cmd.Commands...).          // added subcommands here
 		Build()
 
 	ctx, cancel := context.WithCancel(context.Background())

@@ -7,12 +7,12 @@ import (
 	"testing"
 
 	"github.com/hedzr/cmdr-loaders/local"
-	"github.com/hedzr/cmdr/v2/examples"
 	"github.com/hedzr/store"
 
 	"github.com/hedzr/cmdr/v2/builder"
 	"github.com/hedzr/cmdr/v2/cli"
 	"github.com/hedzr/cmdr/v2/cli/worker"
+	"github.com/hedzr/cmdr/v2/examples/common"
 )
 
 // func TestWorkerS_Pre(t *testing.T) {
@@ -166,13 +166,13 @@ func buildDemoApp(opts ...cli.Opt) (app cli.App) { //nolint:revive
 		Build()
 	b.Build()
 
-	examples.AttachServerCommand(app.Cmd("server", "s"))
+	common.AttachServerCommand(app.Cmd("server", "s"))
 
-	examples.AttachKvCommand(app.Cmd("kv", "kv"))
+	common.AttachKvCommand(app.Cmd("kv", "kv"))
 
-	examples.AttachMsCommand(app.Cmd("ms", "ms"))
+	common.AttachMsCommand(app.Cmd("ms", "ms"))
 
-	examples.AttachMoreCommandsForTest(app.Cmd("more", "m"), true)
+	common.AttachMoreCommandsForTest(app.Cmd("more", "m"), true)
 
 	b = app.Cmd("display", "da").
 		Description("command set for display adapter operations")
