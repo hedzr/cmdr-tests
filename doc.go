@@ -1,0 +1,7 @@
+package main
+
+const AppNameExample = "cmdr-tests" // appName for the current demo app
+
+const appName = "cmdr-tests" // appName of hedzr/cmdr-loaders package
+const version = "v1.3.17"    // version of hedzr/cmdr-loaders package | update it while bumping hedzr/cmdr-loaders' version
+const Version = version
