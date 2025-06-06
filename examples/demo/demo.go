@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	loaders "github.com/hedzr/cmdr-loaders"
+	loaders "github.com/hedzr/cmdr-loaders/lite"
 	"github.com/hedzr/cmdr-tests/examples/demo/cmd"
 	"github.com/hedzr/cmdr/v2"
 	"github.com/hedzr/cmdr/v2/cli"

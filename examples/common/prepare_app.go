@@ -1,7 +1,7 @@
 package common
 
 import (
-	loaders "github.com/hedzr/cmdr-loaders"
+	loaders "github.com/hedzr/cmdr-loaders/lite"
 	"github.com/hedzr/cmdr/v2/cli"
 )
 
