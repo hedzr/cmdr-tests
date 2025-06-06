@@ -3,11 +3,10 @@ package testdata
 import (
 	"context"
 
-	"github.com/hedzr/cmdr-tests/examples"
-
 	"github.com/hedzr/cmdr/v2/builder"
 	"github.com/hedzr/cmdr/v2/cli"
 	"github.com/hedzr/cmdr/v2/cli/worker"
+	"github.com/hedzr/cmdr/v2/examples/common"
 )
 
 func BuildCommands(helpScreen bool) *cli.RootCommand {
@@ -110,16 +109,16 @@ func buildDemoApp() (app cli.App) {
 
 	b.Build()
 
-	examples.AttachServerCommand(app.Cmd("server"))
+	common.AttachServerCommand(app.Cmd("server"))
 
 	// app.AddCmd(func(b cli.CommandBuilder) {
-	// 	examples.AttachKvCommand(b)
+	// 	common.AttachKvCommand(b)
 	// })
 
-	examples.AttachMsCommand(app.Cmd("ms"))
+	common.AttachMsCommand(app.Cmd("ms"))
 
 	// app.AddCmd(func(b cli.CommandBuilder) {
-	// 	examples.AttachMoreCommandsForTest(b)
+	// 	common.AttachMoreCommandsForTest(b)
 	// })
 
 	b = app.Cmd("display", "da").
