@@ -7,9 +7,11 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"sync"
 	"syscall"
 
+	"github.com/hedzr/cmdr/v2/conf"
 	logz "github.com/hedzr/logg/slog"
 
 	"github.com/hedzr/is"
@@ -54,7 +56,14 @@ func improvedPromptMode(ctx context.Context) (err error) {
 	Type 'quit' to end this session and back to Shell.
 	`).Build()
 
-	if dfn2, err = term.MakeNewTerm(ctx, welcomeString, promptString, replyPrefix, helpSystemLooper); err != nil {
+	if dfn2, err = term.MakeNewTerm(ctx, &term.PromptModeConfig{
+		Name:              path.Join(conf.AppName, "cmdr.v2.examples.prompt"),
+		WelcomeText:       welcomeString,
+		PromptText:        promptString,
+		ReplyText:         replyPrefix,
+		MainLooperHandler: helpSystemLooper,
+		// PostInitTerminal:  postInitTerminal,
+	}); err != nil {
 		return
 	}
 	defer dfn2()
