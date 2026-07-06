@@ -12,7 +12,7 @@ require (
 	github.com/hedzr/logg v0.9.0
 	github.com/hedzr/store v1.4.0
 	github.com/lib/pq v1.11.2
-	golang.org/x/term v0.40.0
+	golang.org/x/term v0.43.0
 	gopkg.in/hedzr/errors.v3 v3.3.5
 )
 
@@ -37,11 +37,11 @@ require (
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/zclconf/go-cty v1.17.0 // indirect
 	golang.org/x/exp v0.0.0-20260212183809-81e46e3db34a // indirect
-	golang.org/x/mod v0.33.0 // indirect
-	golang.org/x/net v0.50.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
-	golang.org/x/sys v0.41.0 // indirect
-	golang.org/x/text v0.34.0 // indirect
-	golang.org/x/tools v0.42.0 // indirect
+	golang.org/x/mod v0.35.0 // indirect
+	golang.org/x/net v0.55.0 // indirect
+	golang.org/x/sync v0.20.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
+	golang.org/x/tools v0.44.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
